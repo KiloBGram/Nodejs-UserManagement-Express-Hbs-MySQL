@@ -1,3 +1,4 @@
+<%- include('./layouts/header') %> 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -5,15 +6,16 @@
   </ol>
 </nav>
 
-{{#if alert}}
+<% if (false) { %>
   <div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{alert}}
+    <%= alert %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-{{/if}}
+<% } %>
 
-{{#each rows}}
-<form class="row g-3 needs-validation" method="POST" action="/edituser/{{this.id}}" novalidate> 
-  {{> user-form}}
+<% for (let i = 0; i < rows.length; i++) { %>
+<form class="row g-3 needs-validation" method="POST" action="/edituser/<%= rows[i].id %>" novalidate> 
+  <%- include('./partials/user-form') %>
 </form>
-{{/each}}
+<% } %>
+<%- include('./layouts/footer') %> 
